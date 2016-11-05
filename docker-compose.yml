@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    environment:
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
+      - COOKIE_SECRET=ourhardworkbythesewordsguarded
+    links:
+      - postgres:postgres
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:9.6
+    volumes:
+      - /var/lib/postgres/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
