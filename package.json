@@ -1,0 +1,23 @@
+{
+  "name": "ae-bluelight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "knex": "^0.12.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/us-four-bums/ae-bluelight.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/us-four-bums/ae-bluelight/issues"
+  },
+  "homepage": "https://github.com/us-four-bums/ae-bluelight#readme"
+}
