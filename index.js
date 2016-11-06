@@ -19,7 +19,7 @@ app.use(session({
     },
     store: store
 }));
-
+app.use(express.static(".")); //TODO: folks, get your HTML out of the root...
 db.build().then(function() {
     app.use(function(req, res, next) {
     var idPromise;
