@@ -49,21 +49,21 @@ db.build().then(function() {
     newevent.location_latitude = eventlocation[0].trim();
     newevent.location_longitude = eventlocation[1].trim();
     newevent.hostid = req.session.userid;
-    db.createEvent(newevent).then(function() {
-
+    db.createEvent(newevent).then(function(ids) {
+      res.json(ids);
     });
   })
   app.post('/api/:id/join', urlencodedParser, function (req, res) {
     if (!req.body) return res.sendStatus(400);
     db.joinEvent(req.params.id, req.session.userid).then(function() {
-
+      res.sendStatus(200);
     });
   });
 
   app.post('/api/profile', urlencodedParser, function (req, res) {
     if (!req.body) return res.sendStatus(400);
     db.editUser(req.session.userid,req.body).then(function() {
-      res.end('we gucci fam');
+      res.sendStatus(200);
     }).catch(function(err){
       res.end(err.message+"\n"+JSON.stringify(req.body));
     });
@@ -76,8 +76,8 @@ db.build().then(function() {
     if (!req.body) return res.sendStatus(400);
     var newcomment = req.body;
     newcomment.userid = req.session.userid;
-    db.postComment(newcomment).then(function() {
-
+    db.postComment(newcomment).then(function(ids) {
+      res.json(ids);
     })
   }
 
@@ -86,22 +86,22 @@ db.build().then(function() {
   })
   app.get('/api/event/:id', function (req, res) {
     db.getEvent(req.params.id).then(function(event) {
-      res.send(JSON.stringify(event));
+      res.json(event);
     });
   })
   app.get('/api/event/:id/comment/:cid', function (req, res) {
     db.getComment(req.params.id, req.params.cid).then(function(comment) {
-      res.send(JSON.stringify(comment));
+      res.json(comment);
     });
   })
   app.get('/allevents', function (req, res) {
     db.allEvents().then(function(events) {
-      res.send(JSON.stringify(events));
+      res.json(events);
     });
   });
   app.get('/allprofiles', function (req, res) {
-    db.allProfiles().then(function(events) {
-      res.send(JSON.stringify(events));
+    db.allProfiles().then(function(profiles) {
+      res.json(profiles);
     });
   });
 }).catch(function(err) {
