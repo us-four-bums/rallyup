@@ -39,6 +39,13 @@ db.build().then(function() {
     });
   });
   
+  app.post('/api/profile', urlencodedParser, function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    db.editUser(req.session.userid,req.body).then(function() {
+      res.end('we gucci fam');
+    });
+  });
+  
   app.post('/api/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
   app.post('/api/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
   
@@ -48,7 +55,7 @@ db.build().then(function() {
     newcomment.userid = req.session.userid;
     db.postComment(newcomment).then(function() {
       
-    });
+    })
   }
   app.use(function(req, res, next) {
     var idPromise;

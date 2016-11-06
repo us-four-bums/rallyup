@@ -47,6 +47,12 @@ exports.newUser = function() {
   return knex.insert({username: '', password: '', profpic: ''},'id').into('users');
 }
 
+exports.editUser = function(id,user) {
+  return knex('users')
+  .where('id','==',id)
+  .update(user);
+}
+
 exports.joinEvent = function(eventid, userid) {
   return knex.insert({eventid: eventid, userid: userid}).into('event_members');
 }
@@ -58,6 +64,7 @@ exports.build = function() {
               table.string('username');
               table.string('password');
               table.string('profpic');
+              table.string('bio');
           }),
           knex.schema.createTableIfNotExists('event', function(table) {
               table.increments('id').primary();
