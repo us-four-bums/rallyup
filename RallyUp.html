@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
 <script>
 var searchboxvisibility=false
  function togglevisibility(){
@@ -45,6 +47,42 @@ e.preventDefault();
     });
 
 });
+<div id="map"></div>
+
+  <script>
+
+    L.Marker.prototype.animateDragging = function () {
+
+      var iconMargin, shadowMargin;
+
+      this.on('dragstart', function () {
+        if (!iconMargin) {
+          iconMargin = parseInt(L.DomUtil.getStyle(this._icon, 'marginTop'));
+          shadowMargin = parseInt(L.DomUtil.getStyle(this._shadow, 'marginLeft'));
+        }
+
+        this._icon.style.marginTop = (iconMargin - 15)  + 'px';
+        this._shadow.style.marginLeft = (shadowMargin + 8) + 'px';
+      });
+
+      return this.on('dragend', function () {
+        this._icon.style.marginTop = iconMargin + 'px';
+        this._shadow.style.marginLeft = shadowMargin + 'px';
+      });
+    };
+
+
+    var map = L.map('map').setView([50.5, 30.51], 15);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+  var marker = L.marker([50.5, 30.51], {draggable: true})
+      .animateDragging()
+      .addTo(map);
+
+  </script>
 </script>
 </head>
 <body>
@@ -86,6 +124,6 @@ $.ajax('http://45.55.182.41:3000/api/event').then(function(data){
 
 navigator.geolocation.getCurrentPosition(function(position) {
   console.log(position.coords.latitude, position.coords.longitude);
-  var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
+  var marker = L.circle([position.coords.latitude, position.coords.longitude],position.coords.accuracy).addTo(mymap)
     mymap.setView([position.coords.latitude, position.coords.longitude], 13, {animate: true});
 });</script>
