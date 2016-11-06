@@ -12,8 +12,21 @@ var knex = require('knex')({
 
 exports.knex = knex;
 
-exports.getevent = function(eid) {
+exports.getEvent = function(eid) {
   return knex('event').where({id: eid}).select('*')
+}
+
+exports.getComment = function(eid, cid) {
+  return knex('event_comment').where({id: cid, eventid: eid}).orwhere({eventid: eid, parent_comment: cid}).select('*')
+}
+
+exports.postComment = function(ncomment) {
+  return knex.insert({
+    eventid: eventid,
+    userid: userid,
+    content: content,
+    parent_comment: parent_content
+  }).into('event_comment');
 }
 
 exports.allEvents = function() {
@@ -32,6 +45,10 @@ exports.createEvent = function(nevent) {
 
 exports.newUser = function() {
   return knex.insert({username: '', password: '', profpic: ''},'id').into('users');
+}
+
+exports.joinEvent = function(eventid, userid) {
+  return knex.insert({eventid: eventid, userid: userid}).into('event_members');
 }
 
 exports.build = function() {
@@ -62,7 +79,6 @@ exports.build = function() {
               table.integer('userid');
               table.string('content');
               table.integer('parent_comment');
-              table.integer('parent_event');
           })
         ]);
 };
