@@ -4,18 +4,7 @@ var bodyParser = require('body-parser')
 var session = require('express-session');
 var KnexSessionStore = require('connect-session-knex')(session);
 var db = require('./db');
-var upload = require('s3-uploader');
-var s3uploader = new Upload('us-four-bums-rally', {
-  aws: {
-    path: 'public/',
-    region: 'us-west-2',
-    acl: 'public-read'
-  }
-})
 
-//client.upload('https://avatars.githubusercontent.com/u/2594386?v=3?height=180&width=180', {}, function(err, versions, meta) {
-//  if (err) { throw err; }
-//});
 
 const store = new KnexSessionStore({
   knex: db.knex,
