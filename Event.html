@@ -11,7 +11,6 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>var id = window.location.search.substring(1)</script>
     <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id, function(data){})</script>
-    <script>$('#posty').attr('action', "http://45.55.182.41:3000/api/" + id + "/comment")</script>
     <meta charset="UTF-8">
 
   </script>
@@ -61,4 +60,6 @@
             <input type="submit" value="Post">
     </details>
   </body>
+  
+    <script>$('#posty').attr('action', "http://45.55.182.41:3000/api/" + id + "/comment")</script>
 </html>
