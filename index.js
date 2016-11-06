@@ -10,8 +10,8 @@ const store = new KnexSessionStore({
     tablename: 'sessions' // optional. Defaults to 'sessions'
 });
 
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use(session({
     secret: process.env.COOKIE_SECRET,
