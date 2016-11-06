@@ -12,11 +12,12 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
     var id = window.location.search.substring(1);
-    $.getJSON('http://45.55.182.41:3000/api/user/'+id, function(data){ 
+    $.getJSON('http://45.55.182.41:3000/api/user/'+id, function(data){
       $.each(data, function(index, element){
         document.getElementsByName("username")[0].value = element.username;
         document.getElementsByName("bio")[0].value = element.bio;
-        })
+        document.getElementByID("profilepicture").src = "http://us-four-bums-rally.s3-website-us-east-1.amazonaws.com/public/"+id+".png";
+      })
         
       if(id != '') {
           document.getElementsByName("username")[0].disabled = true;
@@ -34,7 +35,7 @@
       <a href="Profile.html">Profile</a>
       <a href="Login.html">Login</a>
     </div>
-    <img class="profilepicture" src="http://us-four-bums-rally.s3-website-us-east-1.amazonaws.com/public/dwight.png"/>
+    <img id="profilepicture" class="profilepicture" src=""/>
 
     <div>
 
