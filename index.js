@@ -21,6 +21,11 @@ app.use(session({
 }));
 app.use(express.static(".")); //TODO: folks, get your HTML out of the root...
 db.build().then(function() {
+  app.get('/api/events',function(req, res){
+    db.allEvents().then(function(data){
+      res.send(data);
+    });
+  });
   app.use(function(req, res, next) {
     var idPromise;
     if(typeof req.session.userid == 'undefined') {

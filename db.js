@@ -30,7 +30,7 @@ exports.postComment = function(ncomment) {
 }
 
 exports.allEvents = function() {
-  return knex('event').select('*')
+  return knex('event').select('*').orderBy('when','asc')
 }
 exports.allProfiles = function() {
   return knex('users').select('*')
