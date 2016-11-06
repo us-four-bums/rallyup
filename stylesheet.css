@@ -86,3 +86,9 @@ details[open] summary:before {
 .eventsubmission{
   margin: 50px;
 }
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px;
+    border-color: grey;
+}
