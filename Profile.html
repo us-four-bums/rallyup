@@ -18,9 +18,10 @@
         document.getElementsByName("bio")[0].value = element.bio;
         })
     })
-    if(typeof id == undefined) {
+    if(typeof id != 'undefined') {
         document.getElementsByName("username")[0].disabled = true;
         document.getElementsByName("bio")[0].disabled = true;
+        document.getElementById("submit").visibility = "hidden";
     }
     </script>
     <title>Profile</title>
@@ -40,7 +41,7 @@
 
     <div> <input type="text" name="username" placeholder="Username"></div>
     <textarea name="bio" placeholder="Insert bio"></textarea>
-      <input  type="submit" value="Save">
+      <input  type="submit" id="submit" value="Save">
     </form>
 </div>
 
