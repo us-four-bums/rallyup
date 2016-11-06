@@ -23,6 +23,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<div class="scrollmenu">
+  <a href="RallyUp.html">Home</a>
+  <a href="Events.html">Events</a>
+  <a href="Profile.html">Profile</a>
+  <a href="Login.html">Login</a>
+</div>
+
     <title>Event</title>
   </head>
   <body>
@@ -45,5 +52,12 @@
         </tr>
       </tbody>
     </table>
+    <details>
+      <summary>Comments</summary>
+        <form class="commentsubmission" method="post" action="http://45.55.182.41:3000/api/comment">
+          <input class="form-control" type="text" name="comment" placeholder="Enter comment"><br>
+
+            <input type="submit" value="Post">
+    </details>
   </body>
 </html>
