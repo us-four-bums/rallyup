@@ -21,6 +21,22 @@ app.use(session({
 }));
 
 db.build().then(function() {
+    app.use(function(req, res, next) {
+    var idPromise;
+    if(typeof req.session.userid == 'undefined') {
+      idPromise = db.newUser().then(function(id) {
+        return req.session.userid = id[0];
+      })
+    } else {
+      idPromise = Promise.resolve(req.session.userid);
+    }
+      idPromise.then(function() {
+        var n = req.session.views || 0
+        req.session.views = ++n;
+        next();
+        });
+    });
+  
   app.post('/api/event', urlencodedParser, function (req, res) {
     if (!req.body) return res.sendStatus(400);
     var newevent = req.body;
@@ -57,21 +73,6 @@ db.build().then(function() {
       
     })
   }
-  app.use(function(req, res, next) {
-    var idPromise;
-    if(typeof req.session.userid == 'undefined') {
-      idPromise = db.newUser().then(function(id) {
-        return req.session.userid = id[0];
-      })
-    } else {
-      idPromise = Promise.resolve(req.session.userid);
-    }
-      idPromise.then(function() {
-        var n = req.session.views || 0
-        req.session.views = ++n;
-        next();
-        });
-    });
     
     app.get('/', function (req, res) {
       res.send('userid: ' + req.session.userid);
