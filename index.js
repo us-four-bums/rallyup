@@ -69,8 +69,8 @@ db.build().then(function() {
     });
   });
 
-  app.post('/api/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
-  app.post('/api/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
+  app.post('/api/event/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
+  app.post('/api/event/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
 
   postComment = function(req) {
     if (!req.body) return res.sendStatus(400);
