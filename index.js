@@ -21,7 +21,7 @@ app.use(session({
 }));
 app.use(express.static(".")); //TODO: folks, get your HTML out of the root...
 db.build().then(function() {
-  app.get('/api/events',function(req, res){
+  app.get('/api/event',function(req, res){
     db.allEvents().then(function(data){
       res.send(data);
     });
