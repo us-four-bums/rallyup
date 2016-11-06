@@ -90,6 +90,11 @@ db.build().then(function() {
       res.json(event);
     });
   })
+  app.get('/api/user/:id', function (req, res) {
+    db.getUser(req.params.id).then(function(user) {
+      res.json(user);
+    });
+  });
   app.get('/api/event/:id/comments', function (req, res) {
     db.getComment(req.params.id).then(function(comments) {
       res.json(comments);

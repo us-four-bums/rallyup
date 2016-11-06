@@ -62,6 +62,10 @@ exports.editUser = function(id,user) {
 
 }
 
+exports.getUser = function(id) {
+  return knex('users').where({id: id}).select('*')
+}
+
 exports.joinEvent = function(eventid, userid) {
   return knex.insert({eventid: eventid, userid: userid}).into('event_members');
 }
