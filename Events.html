@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>$.getJSON('http://45.55.182.41:3000/api/event', function(data){
       $.each(data, function(index, element){
-        doucument.getElementById('name').innerHTML = element[0].name
+        document.getElementById('name').innerHTML = element.name
 
       })
     })
