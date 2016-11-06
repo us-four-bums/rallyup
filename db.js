@@ -52,7 +52,7 @@ exports.newUser = function() {
 
 exports.editUser = function(id,user) {
   return knex('users')
-  .where('id','==',id)
+  .where('id','=',id)
   .update({
     username:user.username,
     password:user.password,
