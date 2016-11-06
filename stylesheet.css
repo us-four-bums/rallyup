@@ -19,6 +19,7 @@ div.scrollmenu a:hover {
 #rallymap { height: 93.8vh; }
 
 
+
 body{
   margin: 0;
   padding: 0;
@@ -173,9 +174,6 @@ hr{
     border-radius: 50%;
 }
 
-/*
- * Form styles
- */
 .profile-name-card {
     font-size: 16px;
     font-weight: bold;
