@@ -48,41 +48,6 @@ e.preventDefault();
 
 });
 </script>
-  <script>
-
-    L.Marker.prototype.animateDragging = function () {
-
-      var iconMargin, shadowMargin;
-
-      this.on('dragstart', function () {
-        if (!iconMargin) {
-          iconMargin = parseInt(L.DomUtil.getStyle(this._icon, 'marginTop'));
-          shadowMargin = parseInt(L.DomUtil.getStyle(this._shadow, 'marginLeft'));
-        }
-
-        this._icon.style.marginTop = (iconMargin - 15)  + 'px';
-        this._shadow.style.marginLeft = (shadowMargin + 8) + 'px';
-      });
-
-      return this.on('dragend', function () {
-        this._icon.style.marginTop = iconMargin + 'px';
-        this._shadow.style.marginLeft = shadowMargin + 'px';
-      });
-    };
-
-
-    var map = L.map('map').setView([50.5, 30.51], 15);
-
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-  var marker = L.marker([50.5, 30.51], {draggable: true})
-      .animateDragging()
-      .addTo(map);
-
-  </script>
-</script>
 </head>
 <body>
   <div class="scrollmenu">
@@ -115,7 +80,7 @@ $.ajax('http://45.55.182.41:3000/api/event').then(function(data){
         evMarkers.push(L.marker([data[i].location_latitude,data[i].location_longitude]));
         evMarkers[i].bindPopup(JSON.stringify(data[i]));
     }
-    evMarkers.forEach((v) => v.addTo(mymap));
+evMarkers.forEach(function(v){v.addTo(mymap)});
 });
 </script>
 
