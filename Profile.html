@@ -12,8 +12,8 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>$.getJSON('http://45.55.182.41:3000/api/user/', function(data){ 
       $.each(data, function(index, element){
-        $('#username').attr('text', element.username);
-        $('#bio').html( element.username);
+        document.getElementsByName("username")[0].value = element.username;
+        document.getElementsByName("bio")[0].value = element.bio;
         })
       })
     </script>
