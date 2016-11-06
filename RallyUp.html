@@ -9,6 +9,20 @@
 <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+var searchboxvisibility=false
+ function togglevisibility(){
+if(searchboxvisibility){
+$("#searchbox").css({visibility:"hidden"})
+}
+else {
+  $("#searchbox").css({visibility:"visible"})
+}
+searchboxvisibility=!searchboxvisibility
+}
+</script>
+
+
+<script>
 $('form').on('submit',function(e){
 e.preventDefault();
     $.ajax({
@@ -32,13 +46,15 @@ e.preventDefault();
 <body>
   <div class="scrollmenu">
     <a href="RallyUp.html">Home</a>
-    <a href="#home">Search</a>
+    <a href="#search" onclick='togglevisibility()'>Search</a>
     <a href="Events.html">Events</a>
     <a href="#contact">Profile</a>
   </div>
 
  <div id="rallymap">
-
+   <div id="searchbox">
+   <input type="text" placeholder="Search">
+   </div>
  </div>
 
 </body>
@@ -59,56 +75,3 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 
 });</script>
-=======
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script>
-$('form').on('submit',function(e){
-e.preventDefault();
-    $.ajax({
-        method     : "POST",
-        cache    : false,
-        url      : $(this).attr('action'),
-        data     : $(this).serialize(),
-        success  : function(data) {
-          var obj=JSON.parse(data);
-            console.log(obj);
-        }
-        ,failure: function(error)
-        {
-        console.log(error);
-        }
-    });
-
-});
-</script>
-</head>
-<body>
-  <div class="scrollmenu">
-    <a href="RallyUp.html">Home</a>
-    <a href="#home">Search</a>
-    <a href="Events.html">Events</a>
-    <a href="#contact">Profile</a>
-  </div>
-
- <div id="rallymap">
-
- </div>
-
-</body>
-</html>
-<script> var mymap = L.map('rallymap').setView([37.092, -95.7129], 4);
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3RyaWtpbmciLCJhIjoiMzA5NWNmMTA5NTY0NzFjNDVhZjRhODY1OTE3YWYyNjcifQ.Nx8Rz-pEoq5_nPuPcdnb3A', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
-}).addTo(mymap);
-</script>
->>>>>>> dc34daadb53a11e7b5dd5c6c0676be0e6a1d894f
