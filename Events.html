@@ -20,7 +20,9 @@
     <script>$.getJSON('http://45.55.182.41:3000/api/event', function(data){
       $.each(data, function(index, element){
         document.getElementById('name').innerHTML = element.name
-
+        document.getElementById('description').innerHTML =element.name
+        document.getElementById('location').innerHTML = element.name
+        document.getElementById('profile').innerHTML = element.name
       })
     })
       </script>
@@ -74,9 +76,9 @@
     <tbody>
       <tr>
         <td id="name"></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td id="description"></td>
+        <td id="location"></td>
+        <td id="profile"></td>
       </tr>
       <tr>
         <td></td>
