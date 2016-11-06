@@ -24,7 +24,7 @@ db.build().then(function() {
   app.post('/api/event', urlencodedParser, function (req, res) {
     if (!req.body) return res.sendStatus(400);
     var newevent = req.body;
-    var eventlocation = newevent.location.split(',')
+    var eventlocation = newevent.EventLocation.split(',')
     newevent.location_latitude = eventlocation[0].trim();
     newevent.location_longitude = eventlocation[1].trim();
     newevent.hostid = req.session.userid;
