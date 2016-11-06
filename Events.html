@@ -24,9 +24,8 @@
 
   <div class="scrollmenu">
     <a href="RallyUp.html">Home</a>
-    <a href="#search">Search</a>
     <a href="Events.html">Events</a>
-    <a href="#contact">Profile</a>
+    <a href="Profile.html">Profile</a>
   </div>
 
 
@@ -34,6 +33,8 @@
     <title>Events</title>
   </head>
   <body>
+<details >
+  <summary> Create Event</summary>
     <form method="post" action="http://45.55.182.41:3000/api/event">
     Event Name: <input class="form-control" type="text" name="EventName" placeholder="Enter Event Name"><br>
     Event Location: <input class="form-control" type="text" name="EventLocation" placeholder="Enter Latitude, Longitude"><br>
@@ -45,6 +46,7 @@
     <input type="submit" value="Submit">
     </form>
 
+</details>
 
 
   </body>
