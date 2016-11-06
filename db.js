@@ -72,6 +72,7 @@ exports.joinEvent = function(eventid, userid) {
 
 exports.build = function() {
   return Promise.all([
+    knex.schema.dropTable('users'),
     knex.schema.createTableIfNotExists('users', function(table) {
       table.increments('id').primary();
       table.string('username');
