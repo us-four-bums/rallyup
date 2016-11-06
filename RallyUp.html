@@ -76,7 +76,5 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{
 navigator.geolocation.getCurrentPosition(function(position) {
   console.log(position.coords.latitude, position.coords.longitude);
   var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
-  mymap.setView([position.coords.latitude, position.coords.longitude], 13, {animate: true});
-
-
+    mymap.setView([position.coords.latitude, position.coords.longitude], 13, {animate: true});
 });</script>
