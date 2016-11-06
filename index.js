@@ -28,7 +28,7 @@ db.build().then(function() {
     newevent.location_latitude = eventlocation[0].trim();
     newevent.location_longitude = eventlocation[1].trim();
     newevent.hostid = req.session.userid;
-    db.createEvent().then(function() {
+    db.createEvent(newevent).then(function() {
 
     });
   })
