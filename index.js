@@ -60,7 +60,7 @@ db.build().then(function() {
     db.editUser(req.session.userid,req.body).then(function() {
       res.end('we gucci fam');
     }).catch(function(err){
-      res.end(err.message);
+      res.end(err.message+"\n"+JSON.stringify(req.body));
     });
   });
   
