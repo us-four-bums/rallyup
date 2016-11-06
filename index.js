@@ -76,6 +76,7 @@ db.build().then(function() {
     if (!req.body) return res.sendStatus(400);
     var newcomment = req.body;
     newcomment.userid = req.session.userid;
+    newcomment.eventid = req.params.id;
     db.postComment(newcomment).then(function(ids) {
       res.json(ids);
     })
