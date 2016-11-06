@@ -19,7 +19,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>$.getJSON('http://45.55.182.41:3000/api/event', function(data){
-      $.each(data, function(index, element){
+    console.log(data)
+    $.each(data, function(index, element){
     var table = document.getElementById("eventtable");
     var row = table.insertRow(table.rows.length-1);
     var cell1 = row.insertCell(0);
