@@ -32,6 +32,9 @@ exports.postComment = function(ncomment) {
 exports.allEvents = function() {
   return knex('event').select('*')
 }
+exports.allProfiles = function() {
+  return knex('users').select('*')
+}
 
 exports.createEvent = function(nevent) {
   return knex.insert({
@@ -47,6 +50,17 @@ exports.newUser = function() {
   return knex.insert({username: '', password: '', profpic: ''},'id').into('users');
 }
 
+exports.editUser = function(id,user) {
+  return knex('users')
+  .where('id','==',id)
+  .update({
+    username:user.username,
+    password:user.password,
+    bio:user.bio,
+    profpic:user.profpic
+  });
+}
+
 exports.joinEvent = function(eventid, userid) {
   return knex.insert({eventid: eventid, userid: userid}).into('event_members');
 }
@@ -58,6 +72,7 @@ exports.build = function() {
               table.string('username');
               table.string('password');
               table.string('profpic');
+              table.string('bio');
           }),
           knex.schema.createTableIfNotExists('event', function(table) {
               table.increments('id').primary();

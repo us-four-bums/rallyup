@@ -19,38 +19,9 @@ app.use(session({
     },
     store: store
 }));
-
+app.use(express.static(".")); //TODO: folks, get your HTML out of the root...
 db.build().then(function() {
-  app.post('/api/event', urlencodedParser, function (req, res) {
-    if (!req.body) return res.sendStatus(400);
-    var newevent = req.body;
-    var eventlocation = newevent.EventLocation.split(',')
-    newevent.location_latitude = eventlocation[0].trim();
-    newevent.location_longitude = eventlocation[1].trim();
-    newevent.hostid = req.session.userid;
-    db.createEvent().then(function() {
-
-    });
-  })
-  app.post('/api/:id/join', urlencodedParser, function (req, res) {
-    if (!req.body) return res.sendStatus(400);
-    db.joinEvent(req.params.id, req.session.userid).then(function() {
-      
-    });
-  });
-  
-  app.post('/api/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
-  app.post('/api/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
-  
-  postComment = function(req) {
-    if (!req.body) return res.sendStatus(400);
-    var newcomment = req.body;
-    newcomment.userid = req.session.userid;
-    db.postComment(newcomment).then(function() {
-      
-    });
-  }
-  app.use(function(req, res, next) {
+    app.use(function(req, res, next) {
     var idPromise;
     if(typeof req.session.userid == 'undefined') {
       idPromise = db.newUser().then(function(id) {
@@ -65,6 +36,45 @@ db.build().then(function() {
         next();
         });
     });
+  
+  app.post('/api/event', urlencodedParser, function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    var newevent = req.body;
+    var eventlocation = newevent.EventLocation.split(',')
+    newevent.location_latitude = eventlocation[0].trim();
+    newevent.location_longitude = eventlocation[1].trim();
+    newevent.hostid = req.session.userid;
+    db.createEvent(newevent).then(function() {
+
+    });
+  })
+  app.post('/api/:id/join', urlencodedParser, function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    db.joinEvent(req.params.id, req.session.userid).then(function() {
+      
+    });
+  });
+  
+  app.post('/api/profile', urlencodedParser, function (req, res) {
+    if (!req.body) return res.sendStatus(400);
+    db.editUser(req.session.userid,req.body).then(function() {
+      res.end('we gucci fam');
+    }).catch(function(err){
+      res.end(err.message);
+    });
+  });
+  
+  app.post('/api/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
+  app.post('/api/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
+  
+  postComment = function(req) {
+    if (!req.body) return res.sendStatus(400);
+    var newcomment = req.body;
+    newcomment.userid = req.session.userid;
+    db.postComment(newcomment).then(function() {
+      
+    })
+  }
     
     app.get('/', function (req, res) {
       res.send('userid: ' + req.session.userid);
@@ -81,6 +91,11 @@ db.build().then(function() {
     })
     app.get('/allevents', function (req, res) {
       db.allEvents().then(function(events) {
+         res.send(JSON.stringify(events));
+      });
+    });
+    app.get('/allprofiles', function (req, res) {
+      db.allProfiles().then(function(events) {
          res.send(JSON.stringify(events));
       });
     });
