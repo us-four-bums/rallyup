@@ -5,6 +5,7 @@ var session = require('express-session');
 var KnexSessionStore = require('connect-session-knex')(session);
 var db = require('./db');
 
+
 const store = new KnexSessionStore({
   knex: db.knex,
   tablename: 'sessions' // optional. Defaults to 'sessions'

@@ -42,7 +42,8 @@ exports.createEvent = function(nevent) {
     description: nevent.EventDescription,
     location_latitude: nevent.location_latitude,
     location_longitude: nevent.location_longitude,
-    when: nevent.date
+    when: nevent.date,
+    hostid: nevent.hostid
   }).into('event').returning('id');
 }
 
