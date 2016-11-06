@@ -16,7 +16,7 @@
       $.each(data, function(index, element){
         document.getElementsByName("username")[0].value = element.username;
         document.getElementsByName("bio")[0].value = element.bio;
-        document.getElementById("profilepicture").src = "http://us-four-bums-rally.s3-website-us-east-1.amazonaws.com/public/"+id+".png";
+        document.getElementById("profilepicture").src = "http://us-four-bums-rally.s3-website-us-east-1.amazonaws.com/public/"+element.id+".png";
       })
         
       if(id != '') {
