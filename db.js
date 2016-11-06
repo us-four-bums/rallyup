@@ -77,7 +77,7 @@ exports.build = function() {
       table.string('username');
       table.string('password');
       table.string('profpic');
-      table.string('bio');
+      table.string('bio', 1024);
     }),
     knex.schema.createTableIfNotExists('event', function(table) {
       table.increments('id').primary();
