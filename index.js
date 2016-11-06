@@ -65,17 +65,18 @@ db.build().then(function() {
     db.editUser(req.session.userid,req.body).then(function() {
       res.sendStatus(200);
     }).catch(function(err){
-      res.end(err.message+"\n"+JSON.stringify(req.body));
+      res.end(err.message + "\n" + JSON.stringify(req.body));
     });
   });
 
-  app.post('/api/event/:id/comment', urlencodedParser, function (req, res) { postComment(req); });
-  app.post('/api/event/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req); });
+  app.post('/api/event/:id/comment', urlencodedParser, function (req, res) { postComment(req, res); });
+  app.post('/api/event/:id/comment/:parent', urlencodedParser, function (req, res) { postComment(req, res); });
 
-  postComment = function(req) {
+  postComment = function(req, res) {
     if (!req.body) return res.sendStatus(400);
     var newcomment = req.body;
     newcomment.userid = req.session.userid;
+    newcomment.eventid = req.params.id;
     db.postComment(newcomment).then(function(ids) {
       res.json(ids);
     })
@@ -89,9 +90,19 @@ db.build().then(function() {
       res.json(event);
     });
   })
-  app.get('/api/event/:id/comment/:cid', function (req, res) {
-    db.getComment(req.params.id, req.params.cid).then(function(comment) {
-      res.json(comment);
+  app.get('/api/user/', function (req, res) {
+    db.getUser(req.session.userid).then(function(user) {
+      res.json(user);
+    });
+  });
+  app.get('/api/user/:id', function (req, res) {
+    db.getUser(req.params.id).then(function(user) {
+      res.json(user);
+    });
+  });
+  app.get('/api/event/:id/comments', function (req, res) {
+    db.getComment(req.params.id).then(function(comments) {
+      res.json(comments);
     });
   })
   app.get('/allevents', function (req, res) {

@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+    var id = window.location.search.substring(1);
+    $.getJSON('http://45.55.182.41:3000/api/user/'+id, function(data){ 
+      $.each(data, function(index, element){
+        document.getElementsByName("username")[0].value = element.username;
+        document.getElementsByName("bio")[0].value = element.bio;
+        })
+        
+      if(id != '') {
+          document.getElementsByName("username")[0].disabled = true;
+          document.getElementsByName("bio")[0].disabled = true;
+          document.getElementById("submit").style.visibility = "hidden";
+      }
+    })
+    </script>
     <title>Profile</title>
   </head>
   <body>
@@ -19,7 +34,7 @@
       <a href="Profile.html">Profile</a>
       <a href="Login.html">Login</a>
     </div>
-    <img class="profilepicture" src="http://i.imgur.com/xsxoyvh.png"/>
+    <img class="profilepicture" src="http://us-four-bums-rally.s3-website-us-east-1.amazonaws.com/public/dwight.png"/>
 
     <div>
 
@@ -27,7 +42,7 @@
 
     <div> <input type="text" name="username" placeholder="Username"></div>
     <textarea name="bio" placeholder="Insert bio"></textarea>
-      <input  type="submit" value="Save">
+      <input  type="submit" id="submit" value="Save">
     </form>
 </div>
 

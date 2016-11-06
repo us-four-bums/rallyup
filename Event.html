@@ -10,7 +10,34 @@
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>var id = window.location.search.substring(1)</script>
-    <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id, function(data){})</script>
+    <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id, function(data){
+    console.log(data)
+    $.each(data, function(index, element){
+    var table = document.getElementById("eventtable");
+    var row = table.insertRow(table.rows.length);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = "<a href='Event.html?"+element.id+"'>"+element.name+"</a>";
+    cell2.innerHTML = element.description;
+    cell3.innerHTML = element.location
+    cell4.innerHTML = element.profile;
+      })
+    })
+      </script>
+    <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id+'/comments', function(data){
+    console.log(data)
+    $.each(data, function(index, element){
+    var table = document.getElementById("commenttable");
+    var row = table.insertRow(table.rows.length);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = element.userid;
+    cell2.innerHTML = element.content;
+      })
+    })
+      </script>
     <meta charset="UTF-8">
 
   </script>
@@ -52,12 +79,29 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody id="commenttable">
+        <tr>
+          <td id="User"></td>
+          <td id="Content"></td>
+        </tr>
+      </tbody>
+    </table>
     <details>
       <summary>Comments</summary>
-        <form class="commentsubmission" method="post" action="http://45.55.182.41:3000/api/comment">
-          <input class="form-control" type="text" name="comment" placeholder="Enter comment"><br>
+        <form class="commentsubmission" method="post" action="" id="posty">
+          <input class="form-control" type="text" name="content" placeholder="Enter comment"><br>
 
             <input type="submit" value="Post">
     </details>
   </body>
+  
+    <script>$('#posty').attr('action', "http://45.55.182.41:3000/api/event/" + id + "/comment")</script>
 </html>
