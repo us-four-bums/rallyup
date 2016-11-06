@@ -30,7 +30,7 @@ exports.postComment = function(ncomment) {
 }
 
 exports.allEvents = function() {
-  return knex('event').select('*')
+  return knex('event').select('*').orderBy('when','asc')
 }
 exports.allProfiles = function() {
   return knex('users').select('*')
@@ -52,14 +52,14 @@ exports.newUser = function() {
 
 exports.editUser = function(id,user) {
   return knex('users')
-  .update({
-    username:user.username,
-    password:user.password,
-    bio:user.bio,
-    profpic:user.profpic
-  })
-  .where('id','=',id);
-  
+    .update({
+      username:user.username,
+      password:user.password,
+      bio:user.bio,
+      profpic:user.profpic
+    })
+    .where('id','=',id);
+
 }
 
 exports.joinEvent = function(eventid, userid) {
@@ -67,34 +67,34 @@ exports.joinEvent = function(eventid, userid) {
 }
 
 exports.build = function() {
-       return Promise.all([
-          knex.schema.createTableIfNotExists('users', function(table) {
-              table.increments('id').primary();
-              table.string('username');
-              table.string('password');
-              table.string('profpic');
-              table.string('bio');
-          }),
-          knex.schema.createTableIfNotExists('event', function(table) {
-              table.increments('id').primary();
-              table.string('name');
-              table.string('description');
-              table.integer('hostid')
-              table.double('location_latitude');
-              table.double('location_longitude');
-              table.dateTime('when');
-          }),
-          knex.schema.createTableIfNotExists('event_members', function(table) {
-              table.increments('id').primary();
-              table.integer('eventid');
-              table.integer('userider');
-          }),
-          knex.schema.createTableIfNotExists('event_comment', function(table) {
-              table.increments('id').primary();
-              table.integer('eventid');
-              table.integer('userid');
-              table.string('content');
-              table.integer('parent_comment');
-          })
-        ]);
+  return Promise.all([
+    knex.schema.createTableIfNotExists('users', function(table) {
+      table.increments('id').primary();
+      table.string('username');
+      table.string('password');
+      table.string('profpic');
+      table.string('bio');
+    }),
+    knex.schema.createTableIfNotExists('event', function(table) {
+      table.increments('id').primary();
+      table.string('name');
+      table.string('description');
+      table.integer('hostid')
+      table.double('location_latitude');
+      table.double('location_longitude');
+      table.dateTime('when');
+    }),
+    knex.schema.createTableIfNotExists('event_members', function(table) {
+      table.increments('id').primary();
+      table.integer('eventid');
+      table.integer('userider');
+    }),
+    knex.schema.createTableIfNotExists('event_comment', function(table) {
+      table.increments('id').primary();
+      table.integer('eventid');
+      table.integer('userid');
+      table.string('content');
+      table.integer('parent_comment');
+    })
+  ]);
 };
