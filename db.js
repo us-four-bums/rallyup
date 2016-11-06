@@ -16,8 +16,8 @@ exports.getEvent = function(eid) {
   return knex('event').where({id: eid}).select('*')
 }
 
-exports.getComment = function(eid, cid) {
-  return knex('event_comment').where({id: cid, eventid: eid}).orWhere({eventid: eid, parent_comment: cid}).select('*')
+exports.getComment = function(eid) {
+  return knex('event_comment').where({eventid: eid}).select('*')
 }
 
 exports.postComment = function(ncomment) {
