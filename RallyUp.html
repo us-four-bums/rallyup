@@ -71,6 +71,15 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{
     maxZoom: 18
 }).addTo(mymap);
 
+var evMarkers = [];
+$.ajax('http://45.55.182.41:3000/api/event').then(function(data){
+    console.log(data);
+    for(var i = 0; i < data.length; i++){
+        evMarkers.push(L.marker([data[i].location_latitude,data[i].location_longitude]));
+        evMarkers[i].bindPopup(JSON.stringify(data[i]));
+    }
+    evMarkers.forEach((v) => v.addTo(mymap));
+});
 </script>
 
 <script>

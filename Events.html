@@ -17,12 +17,19 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>$.getJSON('http://45.55.182.41:3000/api/event', function(data){
       $.each(data, function(index, element){
-        document.getElementById('name').innerHTML = element.name
-        document.getElementById('description').innerHTML =element.name
-        document.getElementById('location').innerHTML = element.name
-        document.getElementById('profile').innerHTML = element.name
+    var table = document.getElementById("eventtable");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = element.name;
+    cell2.innerHTML = element.description;
+    cell3.innerHTML = element.location
+    cell4.innerHTML = element.profile;
       })
     })
       </script>
@@ -64,7 +71,7 @@
 <div class="container">
   <h2>List of Events</h2>
   <p>List of events near you</p>
-  <table class="table table-striped">
+  <table id="eventtable"class="table table-striped">
     <thead>
       <tr>
         <th>Event name</th>
@@ -79,18 +86,6 @@
         <td id="description"></td>
         <td id="location"></td>
         <td id="profile "></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
