@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 div.scrollmenu {
     background-color: #333;
     overflow: auto;
@@ -17,3 +18,24 @@ div.scrollmenu a:hover {
 }
 
 #rallymap { height: 100vh; }
+=======
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #777;
+}
+
+#rallymap { height: 100vh; }
+>>>>>>> dc34daadb53a11e7b5dd5c6c0676be0e6a1d894f
