@@ -13,9 +13,9 @@ var s3uploader = new Upload('us-four-bums-rally', {
   }
 }
 
-client.upload('https://avatars.githubusercontent.com/u/2594386?v=3?height=180&width=180', {}, function(err, versions, meta) {
-  if (err) { throw err; }
-});
+//client.upload('https://avatars.githubusercontent.com/u/2594386?v=3?height=180&width=180', {}, function(err, versions, meta) {
+//  if (err) { throw err; }
+//});
 
 const store = new KnexSessionStore({
   knex: db.knex,
