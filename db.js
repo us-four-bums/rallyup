@@ -53,7 +53,12 @@ exports.newUser = function() {
 exports.editUser = function(id,user) {
   return knex('users')
   .where('id','==',id)
-  .update(user);
+  .update({
+    username:user.username,
+    password:user.password,
+    bio:user.bio,
+    profpic:user.profpic
+  });
 }
 
 exports.joinEvent = function(eventid, userid) {
