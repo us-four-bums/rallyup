@@ -22,10 +22,10 @@ exports.getComment = function(eid, cid) {
 
 exports.postComment = function(ncomment) {
   return knex.insert({
-    eventid: eventid,
-    userid: userid,
-    content: content,
-    parent_comment: parent_content
+    eventid: ncomment.eventid,
+    userid: ncomment.userid,
+    content: ncomment.content,
+    parent_comment: ncomment.parent_comment
   }).into('event_comment').returning('id');
 }
 
