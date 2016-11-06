@@ -30,3 +30,7 @@ body{
    z-index: 9999;
    visibility: hidden;
 }
+
+.profilepicture{
+  width: 20%;
+}
