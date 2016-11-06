@@ -35,11 +35,11 @@ exports.allEvents = function() {
 
 exports.createEvent = function(nevent) {
   return knex.insert({
-    name: nevent.name,
-    description: nevent.description,
+    name: nevent.EventName,
+    description: nevent.EventDescription,
     location_latitude: nevent.location_latitude,
     location_longitude: nevent.location_longitude,
-    when: nevent.when
+    when: nevent.date
   }).into('event');
 }
 
