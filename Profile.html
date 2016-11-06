@@ -10,12 +10,18 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script>$.getJSON('http://45.55.182.41:3000/api/user/', function(data){ 
+    <script>
+    var id = window.location.search.substring(1);
+    $.getJSON('http://45.55.182.41:3000/api/user/'+id, function(data){ 
       $.each(data, function(index, element){
         document.getElementsByName("username")[0].value = element.username;
         document.getElementsByName("bio")[0].value = element.bio;
         })
-      })
+    })
+    if(typeof id == undefined) {
+        document.getElementsByName("username")[0].disabled = true;
+        document.getElementsByName("bio")[0].disabled = true;
+    }
     </script>
     <title>Profile</title>
   </head>

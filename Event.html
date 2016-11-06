@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>var id = window.location.search.substring(1)</script>
-    <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id, function(data){})</script>
     <script>$.getJSON('http://45.55.182.41:3000/api/event/'+id, function(data){
     console.log(data)
     $.each(data, function(index, element){
