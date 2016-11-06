@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>$.getJSON('http://45.55.182.41:3000/api/user/', function(data){ 
+      $.each(data, function(index, element){
+        $('#username').attr('text', element.username);
+        $('#bio').html( element.username);
+        })
+      })
+    </script>
     <title>Profile</title>
   </head>
   <body>
