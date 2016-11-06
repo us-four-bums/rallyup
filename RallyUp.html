@@ -60,7 +60,7 @@ e.preventDefault();
 
  <div id="rallymap">
    <div id="searchbox">
-   <input type="text" placeholder="Search">
+   <input type="text" placeholder="This app was built with Dwight">
    </div>
  </div>
 
@@ -78,9 +78,9 @@ $.ajax('http://45.55.182.41:3000/api/event').then(function(data){
     console.log(data);
     for(var i = 0; i < data.length; i++){
         evMarkers.push(L.marker([data[i].location_latitude,data[i].location_longitude]));
-        evMarkers[i].bindPopup(JSON.stringify(data[i]));
+        evMarkers[i].bindPopup(data[i].name+": "+data[i].description);
     }
-evMarkers.forEach(function(v){v.addTo(mymap)});
+evMarkers.forEach(function(v){v.addTo(mymap); v.openPopup();});
 });
 </script>
 
