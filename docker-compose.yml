@@ -18,6 +18,8 @@ services:
     depends_on:
       - postgres
   postgres:
+    ports:
+      - 5432:5432
     image: postgres:9.6
     volumes:
       - /var/lib/postgres/data
