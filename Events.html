@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+  <div class="scrollmenu">
+    <a href="RallyUp.html">Home</a>
+    <a href="#home">Search</a>
+    <a href="Events.html">Events</a>
+    <a href="#contact">Profile</a>
+  </div>
+
+
+
+    <title>Events</title>
+  </head>
+  <body>
+    <form method="post" action="/Events">
+    Event Name: <input type="text" name="EventName" placeholder="Enter Event Name"><br>
+    Event Location: <input type="text" name="EventLocation" placeholder="Enter Latitude, Longitude"><br>
+    Event Description: <input type="text" name="EventDescription" placeholder="Enter Event Description"></br>
+    Event Date: <input type="text" id="datepicker" placeholder="Enter Event Date">
+
+
+
+    <input type="submit" value="Submit">
+    </form>
+
+
+
+  </body>
+</html>
