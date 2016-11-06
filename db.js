@@ -26,7 +26,7 @@ exports.postComment = function(ncomment) {
     userid: userid,
     content: content,
     parent_comment: parent_content
-  }).into('event_comment');
+  }).into('event_comment').returning('id');
 }
 
 exports.allEvents = function() {
@@ -43,7 +43,7 @@ exports.createEvent = function(nevent) {
     location_latitude: nevent.location_latitude,
     location_longitude: nevent.location_longitude,
     when: nevent.date
-  }).into('event');
+  }).into('event').returning('id');
 }
 
 exports.newUser = function() {
