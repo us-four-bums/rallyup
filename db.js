@@ -32,6 +32,9 @@ exports.postComment = function(ncomment) {
 exports.allEvents = function() {
   return knex('event').select('*')
 }
+exports.allProfiles = function() {
+  return knex('users').select('*')
+}
 
 exports.createEvent = function(nevent) {
   return knex.insert({

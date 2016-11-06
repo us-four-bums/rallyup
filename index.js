@@ -92,6 +92,11 @@ db.build().then(function() {
          res.send(JSON.stringify(events));
       });
     });
+    app.get('/allprofiles', function (req, res) {
+      db.allProfiles().then(function(events) {
+         res.send(JSON.stringify(events));
+      });
+    });
   }).catch(function(err) {
     app.get('/', function (req, res) {
       res.send(err.message + err.stack)
