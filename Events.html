@@ -12,11 +12,15 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
 
   <div class="scrollmenu">
     <a href="RallyUp.html">Home</a>
@@ -31,10 +35,10 @@
   </head>
   <body>
     <form method="post" action="/Events">
-    Event Name: <input type="text" name="EventName" placeholder="Enter Event Name"><br>
-    Event Location: <input type="text" name="EventLocation" placeholder="Enter Latitude, Longitude"><br>
-    Event Description: <input type="text" name="EventDescription" placeholder="Enter Event Description"></br>
-    Event Date: <input type="text" id="datepicker" placeholder="Enter Event Date">
+    Event Name: <input class="form-control" type="text" name="EventName" placeholder="Enter Event Name"><br>
+    Event Location: <input class="form-control" type="text" name="EventLocation" placeholder="Enter Latitude, Longitude"><br>
+    Event Description: <input class="form-control" type="text" name="EventDescription" placeholder="Enter Event Description"></br>
+    Event Date: <input class="form-control" type="datetime-local" id="datepicker" placeholder="Enter Event Date">
 
 
 
