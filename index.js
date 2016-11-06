@@ -65,7 +65,7 @@ db.build().then(function() {
     db.editUser(req.session.userid,req.body).then(function() {
       res.sendStatus(200);
     }).catch(function(err){
-      res.end(err.message+"\n"+JSON.stringify(req.body));
+      res.end(err.message + "\n" + JSON.stringify(req.body));
     });
   });
 
